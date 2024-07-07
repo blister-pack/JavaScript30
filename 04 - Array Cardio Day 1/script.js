@@ -26,24 +26,26 @@ const people = [
     'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
 ];
 
+
+
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
 const fifteen = inventors.filter((inv) => (inv["year"]<1600 && inv["year"]>=1500));
 console.log(fifteen);
+
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
 const nameArr = inventors.map((inventor)=>`${inventor.first} ${inventor.last}`);
 console.log(nameArr);
 
-
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
 function comparator(a, b) {
     if (a.year < b.year) {
-        return -1;
+        return -1;  // sort a before b
     } else if (a.year > b.year) {
-        return 1;
+        return 1; // sort a after b
     }
     return 0;
 }
@@ -54,10 +56,30 @@ console.table(sortedArr);
 let sortedArrTer = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
 console.log(sortedArrTer);
 
+
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
+let yearsLived = inventors.reduce(
+    (accumulator, inventor) => accumulator + (inventor.passed - inventor.year)
+,0);
+console.log(yearsLived);
 
 // 5. Sort the inventors by years lived
+function lifeDurationComparator(inventor1, inventor2) {
+    let life1 = inventor1.passed - inventor1.year;
+    let life2 = inventor2.passed - inventor2.year;
+    
+    if (life1 > life2) {
+        return -1;
+    } else if (life1 < life2) {
+        return 1;
+    }
+    return 0;
+}
+
+let sortedByLongevity = inventors.sort(lifeDurationComparator);
+
+console.table(sortedByLongevity);
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
