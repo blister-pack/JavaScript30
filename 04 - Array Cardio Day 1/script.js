@@ -95,13 +95,13 @@ console.table(sortedByLongevity);
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
-people.sort(function alphabeticalSort(pers1, pers2) {
+people.sort((pers1, pers2) => {
     if (pers1 < pers2) {
-        return -1
+        return -1;
     } else if (pers1 > pers2) {
-        return 1
+        return 1;
     }
-    return 0
+    return 0;
 });
 
 console.table(people);
@@ -109,3 +109,12 @@ console.table(people);
 // 8. Reduce Exercise
 // Sum up the instances of each of these
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+let singleVehicles = data.reduce((listWithoutRepetitions, vehicle) => {
+    if (!listWithoutRepetitions.includes(vehicle)) {
+        listWithoutRepetitions.push(vehicle);
+    }
+    return listWithoutRepetitions;
+}, []);
+
+console.log(singleVehicles);
