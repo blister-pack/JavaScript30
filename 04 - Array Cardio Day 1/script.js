@@ -118,3 +118,16 @@ let singleVehicles = data.reduce((listWithoutRepetitions, vehicle) => {
 }, []);
 
 console.log(singleVehicles);
+// I thought the idea was to just have one instance of each vehicle
+// it's actually to count how many occur
+
+let sumOfVehicles = data.reduce((vehicleCounter, vehicle) => { 
+    if (!(vehicle in vehicleCounter)) {
+        vehicleCounter[vehicle] = 1;
+    } else {
+        vehicleCounter[vehicle]++;
+    }
+    return vehicleCounter;
+}, {});
+
+console.table(sumOfVehicles);
