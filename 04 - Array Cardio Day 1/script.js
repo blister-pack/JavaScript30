@@ -86,6 +86,11 @@ console.table(sortedByLongevity);
 const categories = document.querySelector(".mw-category");
 const links = categories.querySelectorAll("a");
 
+function deChecker(link) {
+    return link.title.toLowerCase().includes("de");
+}
+
+const linksWithDe = Array.from(links).filter(deChecker);
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
